@@ -1,9 +1,40 @@
 <nav class="navbar navbar-dark bg-dark">
   <form class="container-fluid justify-content-between">
     <a class="navbar-brand" href="#">RoomReserve</a>
-    <div>
-      <button class="btn btn-outline-success me-2" type="button">新規登録</button>
-      <button class="btn btn-outline-secondary" type="button">ログイン</button>
+    <!-- ログインしていない場合 -->
+    <% if (!user_signed_in?) %>
+      <div class="navbar-item">
+        <button class="btn btn-outline-success me-2" type="button">
+          <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+        </button>
+        <button class="btn btn-outline-secondary" type="button">
+          <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+        </button>
+      </div>
+    <!-- ログインしている場合 -->
+    <% else %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">ルーム登録</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">予約済みルーム一覧</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">登録済みルーム一覧</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">設定</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to  "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      </ul>
     </div>
+    <% end %>
   </form>
 </nav>
