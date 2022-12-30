@@ -31,7 +31,7 @@
             <a class="nav-link" href="#">登録済みルーム一覧</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">設定</a>
+            <%= link_to "設定", edit_user_registration_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to  "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
