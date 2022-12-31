@@ -11,6 +11,8 @@ import "channels"
 import "bootstrap";
 import "../stylesheets/application.scss";
 
+window.Noty = require("noty")
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
