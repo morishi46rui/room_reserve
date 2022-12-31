@@ -1,5 +1,10 @@
 <div class="container">
   
+  <ul class="gnavi">
+    <li class="current"><%= link_to "Profile", "/profile"%></li>
+    <li><%= link_to "Dashboard", "/dashboard" %></li>
+  </ul>
+
   <h2 class="mb-3">ユーザ登録情報編集</h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
