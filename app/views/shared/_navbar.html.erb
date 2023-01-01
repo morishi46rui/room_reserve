@@ -31,10 +31,13 @@
             <a class="nav-link" href="#">ルーム登録</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">予約済みルーム一覧</a>
+            <a class="nav-link" href="#">登録済みルーム一覧</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">登録済みルーム一覧</a>
+            <%= link_to "受注予約の管理", your_reservations_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "宿泊予約の管理", your_trips_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "設定", edit_user_registration_path, class: "nav-link" %>

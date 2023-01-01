@@ -1,0 +1,60 @@
+<section class="section">
+  <div class="container">
+    <h2 class="title mt-3">予約一覧</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr align="center">
+          <th>ルーム画像</th>
+          <th>ルーム名</th>
+          <th>住所</th>
+          <th>合計料金</th>
+          <th>チェックイン</th>
+          <th>チェックアウト</th>
+          <th>予約日</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @trips.each do |trip| %>
+        <tr>
+          <!-- ルーム画像 -->
+          <td>
+            <%= link_to room_path(trip.room), data: { turbolinks: false} do %>                                
+              <%= image_tag '/assets/room_default_photo.jpg', class:'w-100' %>
+            <% end %>
+          </td>
+
+          <!-- ルーム名 -->
+          <td>
+            <%= link_to room_path(trip.room), data: { turbolinks: false} do %>                                
+              <%= trip.room.listing_name %>
+            <% end %>
+          </td>
+
+          <!-- 住所 -->
+          <td>
+            <%= trip.room.address %>
+
+          </td>
+          <!-- 合計料金 -->
+          <td>
+            <%= number_to_currency(trip.total) %>
+          </td>
+          <!-- チェックイン -->
+          <td>
+            <%= I18n.l(trip.start_date, format: :full_date) %>
+          </td>
+          <!-- チェックアウト -->
+          <td>
+            <%= I18n.l(trip.end_date, format: :full_date) %>
+          </td>
+          <!-- 予約確定日時 -->
+          <td>
+            <%= I18n.l(trip.created_at, format: :full_date) %>
+          </td>
+
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
