@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'pages/home'
   get '/dashboard', to: 'users#dashboard'
+  get '/users/:id', to: 'users#show', as: 'user'
 
   post '/users/edit', to: 'users#update'
 
