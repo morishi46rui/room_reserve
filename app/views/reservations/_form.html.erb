@@ -1,0 +1,39 @@
+<div class="mt-4">
+  <div class="border border-info">
+    <div class="room-show-nav p-2">
+      <h5 class="price-icon">¥<%= @room.price %> / 日</h5>
+      <div class="room-show-date-select">
+
+        <%= form_for([@room, @room.reservations.new]) do |f| %>
+  <div class="field is-horizontal">
+    <div class="field-body">
+      <div class="field">
+      <label for="start_date">開始日
+        <%= f.text_field :start_date, readonly: true, placeholder: "イン", class: "form-control mb-4" %>
+        <span class="icon is-small is-left">
+        <i class="far fa-calendar-alt"></i>
+        </span>
+      </label>
+      </div>
+
+      <div class="field">
+      <label for="start_date">開始日
+      <p class="control is-expanded has-icons-left has-icons-right">
+        <%= f.text_field :end_date, readonly: true, placeholder: "アウト", class: "form-control mb-4" %>
+        <span class="icon is-small is-left">
+        <i class="far fa-calendar-alt"></i>
+        </span>
+      </p>
+      </label>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "予約する", class: "btn btn-primary w-100"  %>
+<% end %>
+
+      
+      </div>
+    </div>
+  </div>
+</div>
+
