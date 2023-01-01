@@ -11,6 +11,9 @@ import "channels"
 import "bootstrap";
 import "../stylesheets/application.scss";
 
+require('jquery');
+require("jquery-ui/ui/widgets/datepicker");
+
 window.Noty = require("noty")
 window.Dropzone = require("dropzone")
 
