@@ -12,6 +12,7 @@ import "bootstrap";
 import "../stylesheets/application.scss";
 
 window.Noty = require("noty")
+window.Dropzone = require("dropzone")
 
 Rails.start()
 Turbolinks.start()
