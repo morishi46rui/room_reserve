@@ -1,2 +1,45 @@
-<h1 class="text-primary">Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="top top-bg-image d-flex align-items-center">
+  <div class="container d-flex flex-column align-items-center">
+    <div>
+      <h1>素敵な旅をあなたに</h1>
+    </div>
+    <%= form_for root_path, method: :get do %>
+    <div class="search d-flex justify-content-center">
+      <div>
+        <%= text_field_tag :search, params[:search], placeholder: "行き先を入力", class: "form-control" %>
+      </div>
+      <div>
+        <%= submit_tag "検索", class: "btn btn-primary" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="container mw-100 ">
+  <div class="panel-area m-5">
+    <h2 class="section-title">おすすめのエリア</h2>
+    <div class="row">
+      
+      <div class="panel-item col-3">
+        <span>東京</span>
+        <a href="/"><img class="img-fluid" src="/assets/home/img_tokyo.jpg" /></a>
+      </div>
+      
+      <div class="panel-item col-3">
+        <span>大阪</span>
+        <a href="/"><img class="img-fluid" src="/assets/home/img_osaka.jpg" /></a>
+      </div>
+      
+      <div class="panel-item col-3">
+        <span>京都</span>
+        <a href="/"><img class="img-fluid" src="/assets/home/img_kyoto.jpg" /></a>
+      </div>
+      
+      <div class="panel-item col-3">
+        <span>兵庫</span>
+        <a href="/"><img class="img-fluid" src="/assets/home/img_kobe.jpg" /></a>
+      </div>
+      
+    </div>
+  </div>
+</div>

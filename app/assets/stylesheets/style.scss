@@ -2,6 +2,13 @@
   text-decoration: none;
 }
 
+h1 {
+  color: #ffffff;/*文字色*/
+  border: solid 3px #ffffff;/*線色*/
+  padding: 0.5em 4.0em;/*文字周りの余白*/
+  border-radius: 0.5em;/*角丸*/
+}
+
 h2 {
   border-bottom: 3px solid #000;
 }
@@ -19,6 +26,16 @@ h2 {
   width: 200px;
   height: 200px;
 }
+
+.top-bg-image {
+  background: url('/assets/home/background01.jpg') center center;
+  background-size: cover;
+}
+
+.top {
+  height: 300px;
+}
+
 
 /*==================================================
 共通　横並びのための設定
