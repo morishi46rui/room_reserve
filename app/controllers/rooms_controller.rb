@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
   def create
     @room = current_user.rooms.build(room_params)
     if @room.save
-      redirect_to listing_room_path(@room), notice: "保存しました。"
+      redirect_to action: :index, notice: "保存しました。"
     else
       flash[:alert] = "問題が発生しました。"
       render :new
