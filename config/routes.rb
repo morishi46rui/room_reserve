@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user'
   get '/your_trips' => 'reservations#your_trips'
   get '/your_reservations' => 'reservations#your_reservations'
+  get 'search' => 'pages#search'
+  get 'rooms', to: 'rooms#index'
 
   post '/users/edit', to: 'users#update'
 
