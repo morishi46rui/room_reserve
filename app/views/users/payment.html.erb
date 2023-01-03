@@ -1,0 +1,111 @@
+<style>
+  .StripeElement {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+  }
+  .StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  .StripeElement--invalid {
+  border-color: #fa755a;
+  }
+  .StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+  }
+</style>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title mt-3">クレジットカード登録</h2>
+
+
+        <%= form_with url: update_payment_path, local: true, id: "payment-form" do |f| %>
+          <div class="card form-row">
+            <div id="card-element">
+            <!-- ストライプ要素がここに挿入されます。 -->
+            </div>
+            <!-- フォームのエラーを表示するために使用されます。 -->
+            <div id="card-errors" role="alert"></div>
+          </div>
+          <div class="field is-grouped is-grouped-centered">
+            <%= f.submit "#{current_user.stripe_id ? "カードを更新する" : "カードを追加する"}", class: "btn btn-primary w-100 mt-3" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    // Stripeクライアントを作成します。
+    let stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
+    // Elementsのインスタンスを作成します。
+    let elements = stripe.elements();
+    // Elementの作成時に、カスタムスタイリングをオプションに渡すことができます。
+    let style = {
+        base: {
+            color: '#32325d',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+            color: '#aab7c4'
+            }
+        },
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+    };
+    // カード要素のインスタンスを作成します。
+    let card = elements.create('card', {style: style});
+    // カード要素のインスタンスを `card-element` <div>に追加します。
+    card.mount('#card-element');
+    // カード要素からのリアルタイム検証エラーを処理します。
+    card.addEventListener('change', function(event) {
+        let displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+    // フォームの送信を処理します。
+    let form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+            // エラーが発生したかどうかをユーザーに通知します。
+            let errorElement = document.getElementById('card-errors');
+            errorElement.textContent = result.error.message;
+            } else {
+            // トークンをサーバーに送信します。
+            stripeTokenHandler(result.token);
+            }
+        });
+    });
+    // トークンIDを使用してフォームを送信します。
+    function stripeTokenHandler(token) {
+        // トークンIDをフォームに挿入して、サーバーに送信されるようにします
+        let form = document.getElementById('payment-form');
+        let hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
+        // フォームを送信する
+        form.submit();
+        }
+</script>

@@ -63,3 +63,6 @@ gem 'rails-i18n'
 
 # 検索
 gem 'ransack'
+
+# stripe
+gem 'stripe'

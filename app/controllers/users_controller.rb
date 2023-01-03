@@ -18,6 +18,29 @@ class UsersController < ApplicationController
     end
     redirect_to dashboard_path
   end
+
+  def update_payment
+    if !current_user.stripe_id
+      customer = Stripe::Customer.create(
+        email: current_user.email,
+        source: params[:stripeToken]
+      )
+    else
+      customer = Stripe::Customer.update(
+        current_user.stripe_id,
+        source: params[:stripeToken]
+      )
+    end
+    if current_user.update(stripe_id: customer.id)
+      flash[:notice] = "新しいカード情報が登録されました"
+    else
+      flash[:alert] = "無効なカードです"
+    end
+    redirect_to request.referrer
+  rescue Stripe::CardError => e
+    flash[:alert] = e.message
+    redirect_to request.referrer
+  end
   
   private
   
