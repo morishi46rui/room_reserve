@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'search' => 'pages#search'
   get 'rooms', to: 'rooms#index'
   get 'settings/payment', to: 'users#payment', as: 'settings_payment'
+  get 'settings/payout', to: 'users#payout', as: 'settings_payout'
 
   post '/users/edit', to: 'users#update'
   post '/settings/payment', to: 'users#update_payment', as: "update_payment"

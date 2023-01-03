@@ -308,4 +308,6 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  config.omniauth :stripe_connect, 'ca_N2fNc8KfuHUiBoZTWTAH5VkZ4H7LpNvP', 'sk_test_51MIYw1BoYbGcUEuqtjSTg6JjcjRgcrXruS2fgWyJlCaLQwHBcGSQ6AGlR1Nx3Fw0vq516R4bSwhTs2ZKExl7e2ap006va0psUx', scope: 'read_write', stripe_landing: 'login'
 end

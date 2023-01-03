@@ -66,3 +66,6 @@ gem 'ransack'
 
 # stripe
 gem 'stripe'
+
+# stripeコネクト
+gem 'omniauth-stripe-connect'

@@ -11,4 +11,9 @@ class User < ApplicationRecord
          :confirmable
   
   validates :name, presence: true, length: {maximum: 50}
+
+  def is_active_host
+    !self.merchant_id.blank?
+  end
+  
 end
