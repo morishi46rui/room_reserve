@@ -1,3 +1,43 @@
 <div class="container mt-3">
   <h2> 検索結果 </h2>
+  <div class="search-list">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          部屋名
+        </th>
+        <th>
+          住所
+        </th>
+        <th>
+          料金
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <% if @rooms.present? %>
+        <% @rooms.each do |room| %>
+          <tr>
+            <td>
+              <%= link_to room.listing_name, room_path(room) %>
+            </td>
+            <td>
+              <%= room.address %>
+            </td>
+            
+            <td>
+              <%= room.price %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <p>検索結果はありません</p>
+      <% end %>
+      
+    </tbody>
+  </table>
+    
+  </div>
 </div>

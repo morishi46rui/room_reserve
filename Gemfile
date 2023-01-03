@@ -62,4 +62,4 @@ gem 'devise'
 gem 'rails-i18n'
 
 # 検索
-gem 'ransack', '~> 2.3'
+gem 'ransack'
