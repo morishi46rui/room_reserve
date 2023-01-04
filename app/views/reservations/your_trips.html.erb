@@ -19,7 +19,7 @@
           <!-- ルーム画像 -->
           <td>
             <%= link_to room_path(trip.room), data: { turbolinks: false} do %>                                
-              <%= image_tag '/assets/room_default_photo.jpg', class:'w-100' %>
+              <%= image_tag trip.room.image, class:'w-100' %>
             <% end %>
           </td>
 
