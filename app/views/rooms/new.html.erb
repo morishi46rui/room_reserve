@@ -30,11 +30,12 @@
           <%= f.text_field :address, placeholder: "住所を入力してください", class: "form-control mb-4 col-md-9", required: true, id: "autoaddress" %>
         </div>
       </div>
-
-      <%= f.file_field :image %><br>
+      <div class="update-content">
+        <%= f.file_field :image %><br>
+      </div>
 
         <%= f.hidden_field :active, value: true %>
-        <%= f.submit "登録する", id: "publish_button", class: "btn btn-primary w-100" %>
+        <%= f.submit "登録する", id: "publish_button", class: "btn btn-primary w-100 mt-3" %>
 
     <% end %>
 

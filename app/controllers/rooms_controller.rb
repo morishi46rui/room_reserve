@@ -3,7 +3,6 @@ class RoomsController < ApplicationController
   protect_from_forgery except: [:upload_photo]
   before_action :set_room, except: [:index, :new, :create]
   before_action :authenticate_user!, except: [:show]
-  before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update]
 
 
   def index
@@ -16,11 +15,10 @@ class RoomsController < ApplicationController
 
   def create
     @room = current_user.rooms.create(room_params)
-
     if @room.save
-      redirect_to action: :index, notice: "保存しました。"
+      redirect_to listing_room_path(@room), notice: "保存しました。"
     else
-      flash[:alert] = "問題が発生しました。"
+      flash[:alert] = "未入力の項目があります。"
       render :new
     end
   end
