@@ -1,0 +1,11 @@
+<p><%= @resource.name %>様</p><br/>
+<br/>
+<p>RoomReserveにご登録いただきありがとうございます！</p><br/>
+<br/>
+<p>登録メールアドレス　「<%= @email %>」</p><br/>
+<br/>
+<br/>
+<p>下記のリンクをクリックしてアカウントを有効化してくださいm(_ _)m</p><br/>
+<br/>
+<p><%= link_to 'アカウントを有効化する', confirmation_url(@resource, confirmation_token: @token) %></p><br/>
+<br/>

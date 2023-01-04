@@ -1,0 +1,67 @@
+<section class="section">
+  <div class="container">
+    <h2 class="title mt-3">受注予約の一覧</h2>
+    <table class="table is-fullwidth" style="text-align: center;">
+      <thead>
+        <tr>
+          <th>申し込み日</th>
+          <th>お部屋</th>
+          <th>ゲスト</th>
+          <th>チェックイン</th>
+          <th>チェックアウト</th>
+          <th>料金</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @rooms.blank? %>
+          <tr>
+              <td colspan="7" class="has-text-centered"><h1>表示できる受注予約はありません。</h1></td>
+          </tr>
+        <% end %>
+
+        <% @rooms.each do |room| %>
+            <% room.reservations.each do |reservation| %>
+              <tr>
+                
+                <!-- 申込日 -->
+                <td>
+                  <%= I18n.l(reservation.created_at, format: :full_date) %>
+                </td>
+                
+                <!-- お部屋 -->
+                <td>
+                  <%= link_to room_path(reservation.room), data: { turbolinks: false} do %>                                
+                    <%= reservation.room.listing_name %>
+                  <% end %>
+                </td>
+                
+                <!-- ユーザ名 -->
+                <td>
+                  <%= link_to user_path(reservation.user), class: "tootip" do %>
+                    <%= reservation.user.name %>
+                  <% end %>
+                </td>
+                
+                <!-- チェックイン -->
+                <td>
+                  <%= I18n.l(reservation.start_date, format: :full_date) %><br/>
+                </td>
+                
+                <!-- チェックアウト -->
+                <td>
+                  <%= I18n.l(reservation.end_date, format: :full_date) %>
+                </td>
+
+                <!-- 料金 -->
+                <td>
+                  <%= number_to_currency(reservation.total) %>
+                </td>
+              </tr>
+                
+            <% end %>
+        <% end %>
+      </tbody>
+
+    </table>
+  </div>
+</section>

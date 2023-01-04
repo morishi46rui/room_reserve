@@ -1,0 +1,24 @@
+<div class="container mt-5">
+  <!-- 部屋の名前 -->
+  <h2 class="room-show-profile-name"><%= @room.listing_name %></h2>
+  <div class="d-flex justify-content-evenly">
+    <div class="col-md-8">
+      <%= image_tag @room.image, class: "w-50"  %>
+      
+      <div class="room-show-detile d-flex justify-content-start align-items-center">
+        <div class="room-show-profile mx-3">
+          <!-- ホスト名 -->
+          <p>ホスト名：<%= @room.user.name %></p>
+          <!-- 住所 -->
+          <p class="room-show-profile-address"><%= @room.address %></p>
+        </div>
+
+      </div>
+      <!-- 部屋の説明 -->
+      <p class="room-show-detile-content border-top border-bottom mt-3"><%= @room.summary %></p>
+    </div>
+
+    <!-- 予約フォーム -->
+    <%= render 'reservations/form' %>
+  </div>
+</div>

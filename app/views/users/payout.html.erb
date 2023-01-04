@@ -1,0 +1,48 @@
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8-tablet is-6-desktop is-6-widescreen">
+            <% if current_user.merchant_id.blank? %>            
+                <h2 class="title mt-3">振込先の登録</h2>
+                <div class="card" style="text-align: center;">
+                    <br/>
+                    <p>
+                        Stripeというサービスを利用して振込先を登録します。<br/>
+                        民泊で得た報酬はここで登録した振込先に振り込まれます。<br/>
+                    <br/>
+                    <br/>
+                    <p>下のボタンを押してアカウントに振込先を登録して下さい。</p>
+                    <br/>
+                    <%= link_to image_tag('stripe_button.png'), stripe_express_path %>
+            <% else %>
+                <p class="title has-text-centered">振込金額の確認</p>
+                <div class="card" style="text-align: center;">
+                    <br/>
+                    <p>
+                        民泊で得た報酬に対する振込金額をここで確認することができます。<br/>
+                    </p>
+                    <br/>
+                    <br/>
+                    <p>下のボタンを押すと振り込み金額の確認ができます。</p>
+                    <br/>
+                    <div class="text-center">
+                        <%= link_to "売上金額の確認", @login_link.url, class: "button is-primary" %>
+                    </div>
+                    <br/>
+            <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var toggle_modals = $('.toggle-contact');
+    if (toggle_modals) {
+        toggle_modals.on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            var form = document.getElementById('contact-form');
+            form.classList.toggle('is-active');
+        });
+    }
+</script>

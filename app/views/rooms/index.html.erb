@@ -1,0 +1,30 @@
+<div class="container mt-3">
+  <h2>登録済みのルーム一覧</h2>
+  <div class="content px-3 w-50 d-flex flex-wrap">
+    <% current_user.rooms.each do |room| %>
+      <% if room.active? %>
+        <div class="d-flex flex-wrap">
+          <div class="card">
+            <div class="card-image">
+              <%= link_to room_path(room) do %>
+                <figure class="image">
+                  <%= image_tag @room.image, class:"w-100" %>
+                </figure>
+              <% end %>
+            </div>
+            <div class="card-content px-2">
+              <p><%= link_to room.listing_name, room_path(room), data: { turbolinks: false}, class: "text-decoration-none" %></p>
+              <p><%= room.address %></p>
+            </div>
+            <footer class="card-footer">
+              <a class="">
+                <span class="small-title">1泊</span> 
+                <strong><%= number_to_currency(room.price) %></strong>                                            
+              </a>
+            </footer>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>      
+</div>

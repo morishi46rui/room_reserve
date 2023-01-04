@@ -1,0 +1,47 @@
+<div class="mt-4">
+  <div class="border border-info">
+    <div class="room-show-nav p-2">
+      <h5 class="price-icon">¥<%= @room.price %> / 1泊</h5>
+      <div class="room-show-date-select">
+
+        <%= form_for([@room, @room.reservations.new]) do |f| %>
+          <div class="field is-horizontal">
+            <div class="field-body">
+              <div class="field">
+                <label for="start_date">チェックイン
+                  <%= f.text_field :start_date, readonly: true, placeholder: "イン", class: "form-control mb-4" %>
+                  <span class="icon is-small is-left">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </label>
+              </div>
+
+              <div class="field">
+                <label for="start_date">チェックアウト
+                  <%= f.text_field :end_date, readonly: true, placeholder: "アウト", class: "form-control mb-4" %>
+                  <span class="icon is-small is-left">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <%= f.submit "予約する", class: "btn btn-primary w-100", data: {confirm: "予約を確定しますか？"} %>
+        <% end %>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('#reservation_start_date').datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+    $('#reservation_end_date').datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+  });
+</script>
+

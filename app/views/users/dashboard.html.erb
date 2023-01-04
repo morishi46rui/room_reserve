@@ -1,0 +1,64 @@
+<div class="container">
+
+  <ul class="gnavi">
+    <li><%= link_to "Profile", "/profile" %></li>
+    <li class="current"><%= link_to "Dashboard", "/dashboard" %></li>
+  </ul>
+
+  <h2><%= current_user.name %>のダッシュボード</h2>
+  <div class="d-flex row">
+    <div class="content" >
+      <%= image_tag avatar_url(current_user), class:"img-fluid mb-3" %>
+      
+      <div class="button d-flex justify-content-start mb-3">
+        <%= form_for :user, url: users_edit_url(@user), action: :update, method: :post do |f| %>
+          <div class="file">
+            <label class="btn btn-primary w-100">  
+              画像アップロード
+              <%= f.file_field :avatar, class: "hidden", onchange: "this.form.submit();" %>
+            </label>
+          </div>
+        <% end %>   
+      </div>
+    
+    </div>
+    <div class="content mb-3">
+      <h2>自己紹介</h2>
+      <% current_user.about %>
+    </div>
+
+    <div class="content">
+      <h2 class="">管理しているお部屋</h3>
+      
+      <div class="content px-3 w-75 d-flex justify-content-start">
+        <% current_user.rooms.each do |room| %>
+          <% if room.active? %>
+            <div class="d-flex justify-content-start">
+              <div class="card">
+                <div class="card-image">
+                  <%= link_to listing_room_path(room) do %>
+                    <figure class="image">
+                      <%= image_tag '/assets/room_default_photo.jpg', class:"w-100" %>
+                    </figure>
+                  <% end %>
+                </div>
+                <div class="card-content px-2">
+                  <p><%= link_to room.listing_name, room_path(room), data: { turbolinks: false}, class: "text-decoration-none" %></p>
+                  <p><%= room.address %></p>
+                </div>
+                <footer class="card-footer">
+                  <a class="">
+                    <span class="small-title">1泊</span> 
+                    <strong><%= number_to_currency(room.price) %></strong>                                            
+                  </a>
+                </footer>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>      
+    </div>
+  
+  </div>
+
+</div>
