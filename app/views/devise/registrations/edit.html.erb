@@ -18,6 +18,10 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control ", placeholder: "メールアドレス" %>
     </div>
 
+    <div class="field">
+      <%= f.text_field :about, autofocus: true, autocomplete: "about", class: "form-control mb-3", placeholder: "自己紹介" %>
+    </div>
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>現在確認を待っています: <%= resource.unconfirmed_email %></div>
     <% end %>

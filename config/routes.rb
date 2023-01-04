@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post '/users/edit', to: 'users#update'
   post '/settings/payment', to: 'users#update_payment', as: "update_payment"
 
-  resources :rooms, except: [:edit] do
+  resources :rooms do
     member do
       get 'listing'
       get 'pricing'
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       delete :delete_photo
       post :upload_photo
     end
-    resources :reservations, only: [:create]
+    resources :reservations
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

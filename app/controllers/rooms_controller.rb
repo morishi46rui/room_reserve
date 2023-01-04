@@ -23,6 +23,7 @@ class RoomsController < ApplicationController
     end
   end
 
+
   def listing
   end
 

@@ -3,12 +3,9 @@
   <h2 class="room-show-profile-name"><%= @room.listing_name %></h2>
   <div class="d-flex justify-content-evenly">
     <div class="col-md-8">
-      <img src="/assets/room_default_photo.jpg" alt="部屋画像" class="room-show-image" src="" />
+      <%= image_tag @room.image, class: "w-50"  %>
       
       <div class="room-show-detile d-flex justify-content-start align-items-center">
-        <div class="room-show-detile-icon">
-          <a href="/"><img class="host-icon" src="/assets/default_icon.jpg" /></a>
-        </div>
         <div class="room-show-profile mx-3">
           <!-- ホスト名 -->
           <p>ホスト名：<%= @room.user.name %></p>

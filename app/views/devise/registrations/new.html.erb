@@ -13,6 +13,10 @@
     </div>
 
     <div class="field">
+      <%= f.text_field :about, autofocus: true, autocomplete: "about", class: "form-control mb-3", placeholder: "自己紹介" %>
+    </div>
+
+    <div class="field">
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb-3", placeholder: "パスワード（6文字以上）" %>
     </div>
 
