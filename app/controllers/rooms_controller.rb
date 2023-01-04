@@ -15,7 +15,8 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = current_user.rooms.build(room_params)
+    @room = current_user.rooms.create(room_params)
+
     if @room.save
       redirect_to action: :index, notice: "保存しました。"
     else
@@ -55,24 +56,19 @@ class RoomsController < ApplicationController
   end
 
   def upload_photo
-    @room.photos.attach(params[:file])
-    render json: { success: true }
   end
   
   def delete_photo
-    @image = ActiveStorage::Attachment.find(params[:photo_id])
-    @image.purge
-    redirect_to photo_upload_room_path(@room)
   end
 
   private
 
-    def set_room
-      @room = Room.find(params[:id])
+    def room_params
+      params.require(:room).permit(:image, :listing_name, :summary, :price, :address, :active)
     end
 
-    def room_params
-      params.require(:room).permit(:home_type, :room_type, :accommodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_tv, :is_kitchen, :is_air, :is_heating, :is_internet, :price, :active)
+    def set_room
+      @room = Room.find(params[:id])
     end
 
 end

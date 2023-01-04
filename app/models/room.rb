@@ -3,11 +3,12 @@ class Room < ApplicationRecord
 
   has_many :reservations
 
-  has_many_attached :photos
+  has_one_attached :image
 
   validates :listing_name, presence: true
   validates :summary, presence: true
   validates :price, presence: true
   validates :address, presence: true
+  validates :image, presence: true
 
 end

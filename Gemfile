@@ -69,3 +69,9 @@ gem 'stripe'
 
 # stripeコネクト
 gem 'omniauth-stripe-connect'
+
+# 画像アップロード
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'pry-rails'
